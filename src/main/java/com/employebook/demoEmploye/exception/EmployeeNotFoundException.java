@@ -2,7 +2,7 @@ package com.employebook.demoEmploye.exception;
 
 public class EmployeeNotFoundException extends RuntimeException {
 
-    public EmployeeNotFoundException() {
+    public EmployeeNotFoundException()  {
         super("Сотрудник не найден");
     }
 }
