@@ -13,7 +13,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/employee")
-public class  EmployeeController {
+public class EmployeeController {
     private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
@@ -21,21 +21,21 @@ public class  EmployeeController {
     }
 
     @GetMapping("add")
-    public Employee addEnployee(@RequestParam String firstName, @RequestParam String lastName) {
+    public Employee addEnployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam Integer salary, @RequestParam Integer department) {
 
-        return employeeService.add(firstName, lastName);
+        return employeeService.add(firstName, lastName, salary, department);
     }
 
     @GetMapping("remove")
-    public Employee removeEmployee(@RequestParam String firstName, @RequestParam String lastName) {
+    public Employee removeEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam Integer salary, @RequestParam Integer department) {
 
-        return employeeService.remove(firstName, lastName);
+        return employeeService.remove(firstName, lastName, salary, department);
     }
 
     @GetMapping("find")
-    public Employee findEmployee(@RequestParam String firstName, @RequestParam String lastName) {
+    public Employee findEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam Integer salary, @RequestParam Integer department) {
 
-        return employeeService.find(firstName, lastName);
+        return employeeService.find(firstName, lastName, salary, department);
     }
 
     @GetMapping
