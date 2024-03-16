@@ -1,11 +1,17 @@
 package com.employebook.demoEmploye.service;
 
 import com.employebook.demoEmploye.exception.EmployeeAlreadyAddedException;
+import com.employebook.demoEmploye.exception.EmployeeBadRequest;
 import com.employebook.demoEmploye.exception.EmployeeNotFoundException;
 import com.employebook.demoEmploye.exception.EmployeeStorageIsFullException;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.apache.commons.lang3.StringUtils.isAlpha;
 
 
 @Service
@@ -31,6 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeAlreadyAddedException();
         }
         employees.put(employee.getFullName(),employee);
+        validate(employee.getFirstName(),employee.getLastName());
         return employee;
     }
 
@@ -57,4 +64,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Collection<Employee> findAll() {
         return Collections.unmodifiableCollection(employees.values());
     }
+
+    private void validate(String firstName, String lastName) {
+        validateName(firstName);
+        validateName(lastName);
+    }
+
+    private void validateName(String name) {
+        if (!isAlpha(name)) {
+            throw new EmployeeBadRequest("Некоректно введены ФИО сотрудника(недопустимые символы)");
+
+        }
+    }
 }
+
+

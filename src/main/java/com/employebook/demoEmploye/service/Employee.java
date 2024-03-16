@@ -2,6 +2,8 @@ package com.employebook.demoEmploye.service;
 
 import java.util.Objects;
 
+import static org.apache.commons.lang3.StringUtils.capitalize;
+
 public class Employee {
     private String firstName;
     private String lastName;
@@ -31,8 +33,8 @@ public class Employee {
     }
 
     public Employee(String firstName, String lastName, Integer salary, Integer department) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName =capitalize(firstName) ;
+        this.lastName = capitalize(lastName);
         this.salary = salary;
         this.department = department;
     }
